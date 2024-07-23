@@ -2181,3 +2181,13 @@ services:
       networks:
         - frontend
         - backend
+
+    mycat:
+        build:
+          context: ./mycat
+          dockerfile: Dockerfile
+        ports:
+          - "8066:8066"
+          - "9066:9066"
+        volumes:
+          - ./mycat/conf:/opt/mycat/conf   # 挂载本地配置文件到容器中，以便修改后生效。

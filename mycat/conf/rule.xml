@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mycat:rule xmlns:mycat="http://io.mycat/">
+    <tableRule name="hashMod">
+        <rule>
+            <columns>id</columns>
+            <algorithm>hashMod</algorithm>
+        </rule>
+    </tableRule>
+
+    <function name="hashMod" className="io.mycat.route.function.PartitionByMod">
+        <property name="count">8</property>
+    </function>
+</mycat:rule>
+

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mycat:schema xmlns:mycat="http://io.mycat/">
+    <schema name="test_db" checkSQLschema="false" sqlMaxLimit="100">
+        <table name="user" primaryKey="id" dataNode="dn1" rule="hashMod">
+            <childTable name="user_0"/>
+            <childTable name="user_1"/>
+            <childTable name="user_2"/>
+            <childTable name="user_3"/>
+            <childTable name="user_4"/>
+            <childTable name="user_5"/>
+            <childTable name="user_6"/>
+            <childTable name="user_7"/>
+        </table>
+    </schema>
+</mycat:schema>
+

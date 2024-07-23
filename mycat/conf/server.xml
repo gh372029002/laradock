@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mycat:server xmlns:mycat="http://io.mycat/">
+    <!-- 定义数据节点 -->
+    <dataNode name="dn1" dataHost="host1" database="db"/>
+
+    <!-- 数据库连接池配置 -->
+    <!-- 示例配置，实际使用时需要根据实际情况修改 -->
+    
+    <dataHost name="host1" maxCon=100 minCon=10 balance=0 writeType=0 dbType='mysql' dbDriver='native'>
+        <heartbeat>select user()</heartbeat>
+        <writeHost hostM1 url='mysql:3306' user='root' password='password'/>
+    </dataHost>
+
+</mycat:server>
+
