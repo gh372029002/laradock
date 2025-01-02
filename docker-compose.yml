@@ -2049,7 +2049,8 @@ services:
       volumes:
         - ${DATA_PATH_HOST}/mosquitto/data:/mosquitto/data
       ports:
-        - "${MOSQUITTO_PORT}:9001"
+        - "${MQTT_PORT}:1883" # MQTT 默认端口
+        - "${MOSQUITTO_PORT}:9001" # WebSocket 支持
       networks:
         - frontend
         - backend
@@ -2169,13 +2170,18 @@ services:
 
 ### kafka ####################################################
     kafka:
-      image: wurstmeister/kafka
+      build:
+        context: ./kafka
       ports:
         - "9092:9092"
       environment:
         KAFKA_BROKER_ID: 1
-        KAFKA_ADVERTISED_HOST_NAME: 127.0.0.1
-        KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://127.0.0.1:9092
+        # KAFKA_ADVERTISED_HOST_NAME: 127.0.0.1
+        # 容器内部监听的地址
+        KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
+        # 向外广告的地址
+        KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+        KAFKA_LISTENER_SECURITY_PROTOCOL: PLAINTEXT
         KAFKA_MESSAGE_MAX_BYTES: 2000000
         KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       volumes:
